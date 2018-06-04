@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.gossip.android.view.widget.paint.shader.ShaderActivity;
 import com.gossip.android.view.widget.wave.WaveActivity;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class TestListActivity extends ListActivity {
     private List<Class> getStringList() {
         List<Class> list = new ArrayList<>();
         list.add(WaveActivity.class);
+        list.add(ShaderActivity.class);
         return list;
     }
 

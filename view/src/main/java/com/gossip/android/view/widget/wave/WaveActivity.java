@@ -62,8 +62,9 @@ public class WaveActivity extends AppCompatActivity {
 
 
     private void initA(){
-        aperture.setDuration(500);
+        aperture.setDuration(1000);
         aperture.setStrokeWidth(20);
+        aperture.setMaxRadiusRate(1f);
         aperture.setColor(Color.parseColor("#e416e7"));
         aperture.setInitialRadius(0);
     }

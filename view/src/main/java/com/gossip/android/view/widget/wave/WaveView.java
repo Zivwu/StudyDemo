@@ -95,7 +95,7 @@ public class WaveView extends View {
             float[] stops  = new float[]{0f,0.7f,1f};
             RadialGradient mRadialGradient = new RadialGradient(this.getWidth() / 2,
                     this.getHeight() / 2, mMaxRadius,
-                    new int[]{mColor,Color.parseColor("#FFFFFF"),Color.TRANSPARENT},
+                    new int[]{mColor,Color.WHITE,Color.parseColor("#00FFFFFF")},
                     stops, Shader.TileMode.CLAMP);
             mPaint.setShader(mRadialGradient);
         }

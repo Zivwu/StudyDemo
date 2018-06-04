@@ -25,6 +25,7 @@
     <com.gossip.android.view.widget.wave.WaveView
         android:id="@+id/aperture"
         android:layout_width="200dp"
+        android:background="@android:color/holo_blue_light"
         android:layout_centerInParent="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

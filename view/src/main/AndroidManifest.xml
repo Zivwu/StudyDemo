@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".widget.wave.WaveActivity" />
         <activity android:name=".widget.heat.HeartActivity"></activity>
+        <activity android:name=".widget.paint.shader.ShaderActivity" />
     </application>
 
 </manifest>
