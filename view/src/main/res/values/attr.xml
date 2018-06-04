@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HeartView">
+
+        <attr name="heartColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="FunnyBandLoading">
+
+        <attr name="ballUpColor" format="color" />
+        <attr name="bandColor" format="color" />
+        <attr name="pointColor" format="color" />
+        <attr name="ballDownColor" format="color" />
+
+    </declare-styleable>
+
+    <declare-styleable name="WaveProgress">
+
+        <attr name="circleColor" format="color" />
+        <attr name="waveColor" format="color" />
+        <attr name="progressTextSize" format="dimension" />
+        <attr name="pauseColor" format="color" />
+
+        <attr name="successColor" format="color" />
+    </declare-styleable>
+</resources>
