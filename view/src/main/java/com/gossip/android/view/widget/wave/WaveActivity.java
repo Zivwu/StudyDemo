@@ -5,6 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSeekBar;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.BaseInterpolator;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.CycleInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.SeekBar;
 
 import com.gossip.android.view.R;
@@ -61,11 +68,23 @@ public class WaveActivity extends AppCompatActivity {
     }
 
 
-    private void initA(){
-        aperture.setDuration(1000);
-        aperture.setStrokeWidth(20);
-        aperture.setMaxRadiusRate(1f);
+    private void initA() {
+        aperture.setDuration(2000);
+//        aperture.setStrokeWidth(200);
+
+//        aperture.setInterpolator(new Interpolator() {
+//            @Override
+//            public float getInterpolation(float input) {
+//                float result = 0;
+//                if (input < 0.75)
+//                    return result;
+//                result = (1f - 0.75f) * 4;
+//                return result;
+//            }
+//        });
         aperture.setColor(Color.parseColor("#e416e7"));
         aperture.setInitialRadius(0);
     }
+
+
 }

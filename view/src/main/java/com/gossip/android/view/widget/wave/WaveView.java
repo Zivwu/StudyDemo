@@ -7,10 +7,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
+import android.nfc.Tag;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+
+import com.gossip.android.view.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,6 +26,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 public class WaveView extends View {
+    public String TAG = getClass().getName();
     private int mKeepTime = 150;//没一个回调保持150ms的有效时间
 
 
@@ -65,8 +69,8 @@ public class WaveView extends View {
     public WaveView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mPaint = new Paint();
-        mPaint.setStyle(Paint.Style.STROKE);
-        setStrokeWidth(10);
+//        mPaint.setStyle(Paint.Style.STROKE);
+//        setStrokeWidth(10);
         mPaint.setAntiAlias(true);
 
     }
@@ -92,10 +96,10 @@ public class WaveView extends View {
         this.mColor = color;
         mPaint.setColor(color);
         if (this.getHeight() != 0 && this.getWidth() != 0) {
-            float[] stops  = new float[]{0f,0.7f,1f};
+            float[] stops = new float[]{0f, 0.7f, 1f};
             RadialGradient mRadialGradient = new RadialGradient(this.getWidth() / 2,
                     this.getHeight() / 2, mMaxRadius,
-                    new int[]{mColor,Color.WHITE,Color.parseColor("#00FFFFFF")},
+                    new int[]{mColor, Color.WHITE, Color.parseColor("#FFFFFF")},
                     stops, Shader.TileMode.CLAMP);
             mPaint.setShader(mRadialGradient);
         }
@@ -156,7 +160,7 @@ public class WaveView extends View {
         while (iterator.hasNext()) {
             Circle circle = iterator.next();
             if (System.currentTimeMillis() - circle.mCreateTime < mDuration) {
-//                mPaint.setAlpha(circle.getAlpha());
+                mPaint.setAlpha(circle.getAlpha());
                 canvas.drawCircle(getWidth() / 2, getHeight() / 2, circle.getCurrentRadius(), mPaint);
             } else {
                 iterator.remove();
@@ -204,7 +208,15 @@ public class WaveView extends View {
 
         public int getAlpha() {
             float percent = (System.currentTimeMillis() - mCreateTime) * 1.0f / mDuration;
-            return (int) ((1.0f - mInterpolator.getInterpolation(percent)) * 255);
+            float result = 0;
+            if (percent > 0.75)
+                result = (percent - 0.75f)*4 ;
+
+            Logger.printD(TAG, String.valueOf("percent"+percent));
+            Logger.printD(TAG, String.valueOf("result"+result));
+
+//            return (int) ((1.0f - mInterpolator.getInterpolation(percent)) * 255);
+            return (int) ((1.0f - result) * 255);
         }
 
         public float getCurrentRadius() {
