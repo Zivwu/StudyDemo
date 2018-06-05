@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSeekBar;
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.BaseInterpolator;
 import android.view.animation.BounceInterpolator;
@@ -69,6 +70,7 @@ public class WaveActivity extends AppCompatActivity {
 
 
     private void initA() {
+        aperture.setVisibility(View.GONE);
         aperture.setDuration(2000);
 //        aperture.setStrokeWidth(200);
 
