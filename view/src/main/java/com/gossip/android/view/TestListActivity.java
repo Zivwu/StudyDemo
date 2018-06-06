@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.gossip.android.view.path.PathActivity;
 import com.gossip.android.view.widget.paint.shader.ShaderActivity;
 import com.gossip.android.view.widget.wave.WaveActivity;
 
@@ -35,6 +36,7 @@ public class TestListActivity extends ListActivity {
         List<Class> list = new ArrayList<>();
         list.add(WaveActivity.class);
         list.add(ShaderActivity.class);
+        list.add(PathActivity.class);
         return list;
     }
 
