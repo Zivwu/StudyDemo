@@ -41,7 +41,7 @@ public class PathView extends View {
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(4);
-        paint.setColor(Color.RED);
+        paint.setColor(Color.GRAY);
         path = new Path();
         wave=new Wave(20,200);
     }
@@ -57,7 +57,7 @@ public class PathView extends View {
         super.onDraw(canvas);
         path.reset();
         int currentY =this.getHeight()*(100-progress)/100;
-        path.moveTo(0+dx, currentY);
+        path.moveTo(-wave.width+dx, currentY);
 //        for (int i = 1; i < getWidth() / wave.width / 2 + 2; i++) {
 //            int firstX =wave.width*i;
 //            int secondX=firstX+wave.width;
@@ -68,11 +68,11 @@ public class PathView extends View {
 //            Logger.printD("PATH","i:"+i+"\ncontrol1:"+wave.width / 2*i+"\ncontrol2:"+wave.width / 2*(i+2));
 //        }
 
-        for (int i=0;i<getWidth()/wave.width+1;i++){
+        for (int i=-1;i<getWidth()/wave.width+1;i++){
             int firstX=wave.width*i+wave.width/2+dx;
             int secondX =firstX +wave.width/2;
-            int controlX = firstX -wave.width/4;
-            int controlX2 = secondX -wave.width/4;
+            int controlX = firstX -wave.width/4-20;
+            int controlX2 = secondX -wave.width/4-20;
             int i1 = wave.width*i+wave.width >> 1;
             Logger.printD("PATH","i:"+i
                     +"\nfirstX:"+firstX
@@ -84,6 +84,9 @@ public class PathView extends View {
             path.quadTo(controlX2,currentY+20,secondX,currentY);
 
         }
+        path.lineTo(getWidth(),getHeight());
+        path.lineTo(0,getHeight());
+        path.close();
         canvas.drawPath(path, paint);
 
         path.reset();

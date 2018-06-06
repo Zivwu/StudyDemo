@@ -18,6 +18,7 @@ import android.view.animation.LinearInterpolator;
 
 
 import com.gossip.android.view.R;
+import com.gossip.android.view.utils.Logger;
 
 import java.text.DecimalFormat;
 
@@ -244,10 +245,10 @@ public final class WaveProgress extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawCircle(radius, radius, radius, circlePaint);
+//        canvas.drawCircle(radius, radius, radius, circlePaint);
         drawWaveShadow(canvas);
         drawWave(canvas);
-        drawProgressText(canvas);
+//        drawProgressText(canvas);
 
     }
 
@@ -277,6 +278,21 @@ public final class WaveProgress extends View {
         wavePath.close();
         circlePaint.setColor(circleColor);
         circlePaint.setAntiAlias(true);
+
+        Logger.printD("PATH",
+                "\n p1:"+p1.toString()
+                +"\n p2:"+p2.toString()
+                +"\n p3:"+p3.toString()
+                +"\n p4:"+p4.toString()
+                +"\n p5:"+p5.toString()
+                +"\n pControl1:"+pControl1.toString()
+                +"\n pControl2:"+pControl2.toString()
+                +"\n pControl3:"+pControl3.toString()
+                +"\n pControl4:"+pControl4.toString()
+        );
+
+        canvas.drawPath(wavePath,circlePaint);
+
         waveInCirclePath.reset();
         waveInCirclePath.addCircle(radius, radius, radius, Path.Direction.CW);
         //取该圆与波浪路径的交集，形成波浪在圆内的效果
