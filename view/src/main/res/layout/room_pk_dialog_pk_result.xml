@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    tools:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/fl_bg"
+        android:layout_width="266dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="125dp"
+        android:layout_height="189dp">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@mipmap/room_pk_bg_vote" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="评委的分"
+                    android:textColor="#202020" />
+
+                <TextView
+                    android:id="@+id/tv_judges_result"
+                    android:layout_width="77dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@mipmap/room_pk_btn_bg_result"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    tools:text="95" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="人气得分"
+                    android:textColor="#202020" />
+
+                <TextView
+                    android:id="@+id/tv_popularity_result"
+                    android:layout_width="77dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@mipmap/room_pk_btn_bg_result"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    tools:text="95" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="81dp"
+        android:layout_height="88dp"
+        android:layout_alignBottom="@+id/fl_bg"
+        android:layout_alignLeft="@+id/fl_bg"
+        android:layout_marginLeft="-39dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/room_pk_colour_bar" />
+
+    <ImageView
+        android:layout_width="361dp"
+        android:layout_height="159dp"
+        android:layout_marginBottom="155dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
+        android:src="@mipmap/room_pk_head" />
+
+    <ImageView
+        android:id="@+id/iv_label"
+        android:layout_width="40dp"
+        android:layout_height="47dp"
+        android:layout_alignRight="@+id/fl_bg"
+        android:layout_alignTop="@+id/fl_bg"
+        android:layout_marginRight="16dp"
+        android:src="@mipmap/room_pk_label_result" />
+
+
+</RelativeLayout>

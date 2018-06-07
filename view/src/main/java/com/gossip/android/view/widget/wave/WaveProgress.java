@@ -12,9 +12,11 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.os.Build;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 
 import com.gossip.android.view.R;
@@ -80,10 +82,10 @@ public final class WaveProgress extends View {
     public WaveProgress(Context context) {
         super(context);
         initAllPath();
-        circleColor = Color.parseColor("#bababa");
-        waveColor = Color.parseColor("#3F51B5");
+        circleColor = Color.parseColor("#80000000");
+        waveColor = Color.parseColor("#50FFFFFF");
         beginColor = waveColor;
-        successColor = Color.parseColor("#3F51B5");
+        successColor = Color.parseColor("#203dcfff");
         progressTextSize = 80;
         pauseColor = Color.parseColor("#fa6c0e");
         initAllPaint();
@@ -106,10 +108,10 @@ public final class WaveProgress extends View {
 
     private void obtainTypedArray(TypedArray array) {
 
-        circleColor = array.getColor(R.styleable.WaveProgress_circleColor, Color.parseColor("#bababa"));
-        waveColor = array.getColor(R.styleable.WaveProgress_waveColor, Color.parseColor("#3F51B5"));
+        circleColor = array.getColor(R.styleable.WaveProgress_circleColor, Color.parseColor("#80000000"));
+        waveColor = array.getColor(R.styleable.WaveProgress_waveColor, Color.parseColor("#50FFFFFF"));
         beginColor = waveColor;
-        successColor = array.getColor(R.styleable.WaveProgress_successColor, Color.parseColor("#3F51B5"));
+        successColor = array.getColor(R.styleable.WaveProgress_successColor, Color.parseColor("#203dcfff"));
         progressTextSize = array.getDimensionPixelSize(R.styleable.WaveProgress_progressTextSize, 80);
         pauseColor = array.getColor(R.styleable.WaveProgress_pauseColor, Color.parseColor("#fa6c0e"));
 
@@ -245,8 +247,8 @@ public final class WaveProgress extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-//        canvas.drawCircle(radius, radius, radius, circlePaint);
-        drawWaveShadow(canvas);
+        canvas.drawCircle(radius, radius, radius, circlePaint);
+//        drawWaveShadow(canvas);
         drawWave(canvas);
 //        drawProgressText(canvas);
 
@@ -279,19 +281,19 @@ public final class WaveProgress extends View {
         circlePaint.setColor(circleColor);
         circlePaint.setAntiAlias(true);
 
-        Logger.printD("PATH",
-                "\n p1:"+p1.toString()
-                +"\n p2:"+p2.toString()
-                +"\n p3:"+p3.toString()
-                +"\n p4:"+p4.toString()
-                +"\n p5:"+p5.toString()
-                +"\n pControl1:"+pControl1.toString()
-                +"\n pControl2:"+pControl2.toString()
-                +"\n pControl3:"+pControl3.toString()
-                +"\n pControl4:"+pControl4.toString()
-        );
-
-        canvas.drawPath(wavePath,circlePaint);
+//        Logger.printD("PATH",
+//                "\n p1:"+p1.toString()
+//                +"\n p2:"+p2.toString()
+//                +"\n p3:"+p3.toString()
+//                +"\n p4:"+p4.toString()
+//                +"\n p5:"+p5.toString()
+//                +"\n pControl1:"+pControl1.toString()
+//                +"\n pControl2:"+pControl2.toString()
+//                +"\n pControl3:"+pControl3.toString()
+//                +"\n pControl4:"+pControl4.toString()
+//        );
+//
+//        canvas.drawPath(wavePath,circlePaint);
 
         waveInCirclePath.reset();
         waveInCirclePath.addCircle(radius, radius, radius, Path.Direction.CW);
@@ -327,7 +329,7 @@ public final class WaveProgress extends View {
         waveShadowPaint.setAntiAlias(true);
         waveShadowPaint.setStrokeWidth(2);
         waveShadowPaint.setStyle(Paint.Style.FILL);
-        waveShadowPaint.setAlpha(60);
+        waveShadowPaint.setAlpha(30);
 
 
         waveShadowInCirclePath.reset();

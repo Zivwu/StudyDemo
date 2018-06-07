@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:id="@+id/fl_bg"
+        android:layout_width="266dp"
+        android:layout_height="189dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="125dp">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@mipmap/room_pk_bg_vote" />
+
+
+
+
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp"
+            android:src="@mipmap/ic_def_head" />
+
+        <com.gossip.android.view.widget.wave.WaveProgress
+            android:id="@+id/vp_progress"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp"
+            tools:src="@mipmap/ic_def_head" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="66dp"
+            android:scaleType="centerInside"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp"
+            android:src="@mipmap/room_pk_vote_praise" />
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_head"
+            android:layout_centerHorizontal="true"
+            android:textColor="#202020"
+            android:textSize="14sp"
+            tools:text="昵称：遥远的一只猪" />
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/tv_nickname"
+            android:layout_marginRight="16dp"
+            android:textColor="#585858"
+            android:textSize="14sp"
+            tools:text="2：00" />
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nickname"
+            android:layout_centerHorizontal="true"
+            android:textColor="#202020"
+            android:textSize="14sp"
+            tools:text="ID：1009876" />
+
+        <Button
+            android:id="@+id/btn_vote"
+            android:layout_width="78dp"
+            android:layout_height="34dp"
+            android:layout_below="@+id/tv_id"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/room_pk_btn_vote"
+            android:text="投票"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="361dp"
+        android:layout_height="159dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
+        android:src="@mipmap/room_pk_head" />
+
+
+    <com.gossip.android.view.gossip.pk.PeriscopeLayout
+        android:id="@+id/periscope"
+        tools:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_height="156dp" />
+
+    <ImageView
+        android:layout_width="81dp"
+        android:layout_height="88dp"
+        android:layout_alignBottom="@+id/fl_bg"
+        android:layout_alignLeft="@+id/fl_bg"
+        android:layout_marginLeft="-39dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/room_pk_colour_bar" />
+
+
+    <ImageView
+        android:id="@+id/iv_label"
+        android:layout_width="40dp"
+        android:layout_height="47dp"
+        android:layout_alignRight="@+id/fl_bg"
+        android:layout_alignTop="@+id/fl_bg"
+        android:layout_marginRight="16dp"
+        android:src="@mipmap/room_pk_label_vote" />
+
+
+</RelativeLayout>
