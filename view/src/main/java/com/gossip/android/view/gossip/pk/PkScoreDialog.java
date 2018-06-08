@@ -19,6 +19,11 @@ import com.gossip.android.view.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 
 public class PkScoreDialog extends Dialog {
 
@@ -48,19 +53,18 @@ public class PkScoreDialog extends Dialog {
 
     private void showNumPicker() {
         final NumberPicker picker = new NumberPicker(context);
-        picker.setMaxValue(8);
-        picker.setMinValue(1);
+        picker.setMaxValue(10);
+        picker.setMinValue(0);
         picker.setValue(5);
         picker.setWrapSelectorWheel(false);
 
-
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("请选择座位号")
+        builder.setTitle("请选择评分")
                 .setView(picker)
                 .setPositiveButton("确定", new OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        tvNum.setText(String.valueOf(picker.getValue()));
                     }
                 })
                 .setNegativeButton("取消", new OnClickListener() {
@@ -82,6 +86,21 @@ public class PkScoreDialog extends Dialog {
                 showNumPicker();
                 break;
             case R.id.btn_vote:
+                String score = tvNum.getText().toString();
+                Observable.just(score)
+                        .subscribeOn(Schedulers.io())
+                        .map(new Function<String, Integer>() {
+                            @Override
+                            public Integer apply(String s) throws Exception {
+                                return Integer.valueOf(s);
+                            }
+                        })
+                        .filter(new Predicate<Integer>() {
+                            @Override
+                            public boolean test(Integer integer) throws Exception {
+                                return integer>=0&&integer<=10;
+                            }
+                        });
                 break;
         }
     }
