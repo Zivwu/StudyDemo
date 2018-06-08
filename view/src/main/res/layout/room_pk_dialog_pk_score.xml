@@ -35,10 +35,12 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_num_picker"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp">
 
                 <TextView
+                    android:id="@+id/tv_num"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,7 +71,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
             android:background="@mipmap/room_pk_btn_vote"
-            android:text="投票"
+            android:text="确定"
             android:textColor="#ffffff"
             android:textSize="14sp" />
 

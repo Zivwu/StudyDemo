@@ -21,6 +21,13 @@ import butterknife.OnClick;
 
 public class PkVoteDialog extends Dialog {
 
+    @BindView(R.id.tl_ticket)
+    TicketLayout tlTicket;
+    private int clickTimes;
+    private static final int DEF_CLICK_INTERVAL_TIME = 300;
+    private static final int DEF_UP_DATA_CLICK = 10;
+    private long lastClickTime;
+
 
     @BindView(R.id.iv_head)
     ImageView ivHead;
@@ -46,6 +53,7 @@ public class PkVoteDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.room_pk_dialog_pk_vote);
+        clickTimes = 0;
         ButterKnife.bind(this);
         Window window = getWindow();
         window.setGravity(Gravity.CENTER);
@@ -54,12 +62,30 @@ public class PkVoteDialog extends Dialog {
     }
 
 
+    private void onHeadClick() {
+        long currentTimeMillis = System.currentTimeMillis();
+        if (currentTimeMillis - lastClickTime < DEF_CLICK_INTERVAL_TIME)
+            return;
+        lastClickTime = currentTimeMillis;
+        clickTimes++;
+        if (clickTimes < DEF_UP_DATA_CLICK)
+            return;
+        clickTimes -= DEF_UP_DATA_CLICK;
+        tlTicket.addView();
+        onUpDataClick();
+    }
+
+    private void onUpDataClick() {
+
+    }
+
+
     @OnClick({R.id.vp_progress, R.id.btn_vote})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.vp_progress:
                 periscope.addHeart();
-                vpProgress.setProgress(vpProgress.getProgress() + 0.1f);
+                onHeadClick();
                 break;
             case R.id.btn_vote:
                 break;

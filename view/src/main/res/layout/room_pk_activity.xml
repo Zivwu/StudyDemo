@@ -14,4 +14,10 @@
         android:layout_marginBottom="61dp"
         android:background="@null"
         android:src="@mipmap/room_pk_enter" />
+
+
+    <NumberPicker
+        android:id="@+id/numpicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

@@ -90,6 +90,15 @@
             android:textColor="#ffffff"
             android:textSize="14sp" />
 
+
+        <com.gossip.android.view.gossip.pk.TicketLayout
+            android:id="@+id/tl_ticket"
+            android:layout_toRightOf="@+id/iv_head"
+            android:layout_alignTop="@id/iv_head"
+            tools:background="@color/colorAccent"
+            android:layout_width="50dp"
+            android:layout_height="70dp" />
+
     </RelativeLayout>
 
 
@@ -107,6 +116,8 @@
         android:layout_width="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_height="156dp" />
+
+
 
     <ImageView
         android:layout_width="81dp"
