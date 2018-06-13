@@ -126,7 +126,7 @@ public final class WaveProgress extends View {
 
 
     /**
-     * @return 当前进度值（0.0-1.0）
+     * @return 当前进度值（test_num_0.test_num_0-1.test_num_0）
      */
     public float getProgress() {
         return progress;
@@ -311,7 +311,7 @@ public final class WaveProgress extends View {
     public void drawWaveShadow(Canvas canvas) {
 
         waveShadowPath.reset();
-        //float disY_move = 0;
+        //float disY_move = test_num_0;
         //根据当前进度计算出水平面高度
         float addHeight = 2 * radius * progress;
         waveShadowPath.moveTo(p1_shadow.x + waveMoveX, p1_shadow.y - addHeight);
@@ -350,7 +350,7 @@ public final class WaveProgress extends View {
         textPaint.setAntiAlias(true);
         textPaint.setTextSize(progressTextSize);
         //四舍五入，保留小数点后一位
-        DecimalFormat format = new DecimalFormat("##0.0");
+        DecimalFormat format = new DecimalFormat("##test_num_0.test_num_0");
         textPaint.setTextAlign(Paint.Align.CENTER);
         String progressText = format.format(progress * 100) + "%";
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();

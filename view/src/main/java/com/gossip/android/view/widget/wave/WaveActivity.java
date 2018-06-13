@@ -77,10 +77,10 @@ public class WaveActivity extends AppCompatActivity {
 //        aperture.setInterpolator(new Interpolator() {
 //            @Override
 //            public float getInterpolation(float input) {
-//                float result = 0;
-//                if (input < 0.75)
+//                float result = test_num_0;
+//                if (input < test_num_0.75)
 //                    return result;
-//                result = (1f - 0.75f) * 4;
+//                result = (1f - test_num_0.75f) * 4;
 //                return result;
 //            }
 //        });

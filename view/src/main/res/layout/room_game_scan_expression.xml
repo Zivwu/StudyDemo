@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:background="@color/colorPrimary">
+
+    <com.gossip.android.view.gossip.game.ScanView
+        android:id="@+id/sv_one"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_gravity="center_horizontal" />
+
+    <com.gossip.android.view.gossip.game.ScanView
+        android:id="@+id/sv_two"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="29dp" />
+
+    <com.gossip.android.view.gossip.game.ScanView
+        android:id="@+id/sv_three"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="29dp" />
+
+</FrameLayout>

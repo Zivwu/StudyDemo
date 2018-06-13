@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/room_game_scan_bg_blue" />
+
+
+    <ImageView
+        android:id="@+id/iv_round"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/room_game_scan_sector_white"
+        android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/iv_start_one"
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:rotation="90"
+        android:src="@mipmap/room_game_scan_point_blue"
+        android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/iv_start_two"
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:rotation="180"
+        android:src="@mipmap/room_game_scan_point_blue"
+        android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/iv_start_three"
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:rotation="-45"
+        android:src="@mipmap/room_game_scan_point_blue"
+        android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/iv_num"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        tools:src="@mipmap/room_game_scan_bg_round"
+        tools:visibility="gone" />
+
+
+    <!--</FrameLayout>-->
+</merge>
