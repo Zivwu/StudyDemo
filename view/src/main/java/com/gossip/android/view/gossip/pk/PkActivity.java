@@ -8,6 +8,11 @@ import android.widget.ImageButton;
 
 import com.gossip.android.view.R;
 import com.gossip.android.view.gossip.game.ScanAnimView;
+import com.gossip.android.view.gossip.game.ScanDialog;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,8 +33,15 @@ public class PkActivity extends AppCompatActivity {
         scanView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Random random = new Random();
 //                scanView.setNum(9,false);
-                scanView.setNum(9,3);
+                List<Integer> list =new ArrayList<>();
+                list.add(2);
+                list.add(3);
+                list.add(-1);
+
+                ScanDialog dialog =new ScanDialog(PkActivity.this,list);
+                dialog.show();
             }
         });
     }
@@ -37,6 +49,7 @@ public class PkActivity extends AppCompatActivity {
 
     @OnClick(R.id.fabtn_pk)
     public void onViewClicked() {
+
 //        Random random = new Random();
 //        int i = random.nextInt(3);
 //        Dialog dialog;

@@ -9,7 +9,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
@@ -36,6 +35,9 @@ public class ScanAnimView extends ScanView {
     private AnimatorSet numSet;
 
     private Disposable subscribe;
+    private ImageView ivHand;
+    private FrameLayout flNotifyClick;
+    private ObjectAnimator handAnim;
 
     public ScanAnimView(@NonNull Context context) {
         super(context);
@@ -51,7 +53,7 @@ public class ScanAnimView extends ScanView {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.widget_scan_view_big;
+        return R.layout.room_game_widget_scan_view_big;
     }
 
     @Override
@@ -61,8 +63,18 @@ public class ScanAnimView extends ScanView {
         startOne = findViewById(R.id.iv_start_one);
         startTwo = findViewById(R.id.iv_start_two);
         startThree = findViewById(R.id.iv_start_three);
+        ivHand = findViewById(R.id.iv_hand);
+        flNotifyClick = findViewById(R.id.fl_notify_click);
         initBgAndRoundAnim();
         initNumAnim();
+    }
+
+    private ObjectAnimator getHandAnim() {
+        ObjectAnimator handAnim = ObjectAnimator.ofFloat(ivHand, "translationY", 0, 90);
+        handAnim.setDuration(500);
+        handAnim.setRepeatCount(ValueAnimator.INFINITE);//重复数量
+        handAnim.setRepeatMode(ValueAnimator.REVERSE);//重复模式
+        return handAnim;
     }
 
     private void initBgAndRoundAnim() {
@@ -116,9 +128,13 @@ public class ScanAnimView extends ScanView {
             if (set != null)
                 set.start();
             numView.setImageResource(0);
+            if (num >= 0 && num < numRes.length)
+                onOpenNum();
+
             if (subscribe != null) {
                 subscribe.dispose();
             }
+
             subscribe = Observable.timer(2000, TimeUnit.MILLISECONDS)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -134,9 +150,24 @@ public class ScanAnimView extends ScanView {
             setNum(num);
         }
 
-
     }
 
+    @Override
+    protected void onOpenNum() {
+        super.onOpenNum();
+        flNotifyClick.setVisibility(GONE);
+        if (handAnim!=null)
+            handAnim.cancel();
+    }
+
+    @Override
+    protected void onCloseNum() {
+        super.onCloseNum();
+        if (handAnim==null)
+            handAnim=getHandAnim();
+        flNotifyClick.setVisibility(VISIBLE);
+        handAnim.start();
+    }
 
     private ObjectAnimator getStarAnim(View view, int time) {
         ObjectAnimator alpha = ObjectAnimator.ofFloat(view, View.ALPHA, 0.2f, 1f);
@@ -157,5 +188,7 @@ public class ScanAnimView extends ScanView {
             set.cancel();
         if (numSet != null)
             numSet.cancel();
+        if (handAnim!=null)
+            handAnim.cancel();
     }
 }

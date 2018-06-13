@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <com.gossip.android.view.gossip.game.ScanAnimView
+        android:id="@+id/sv_one"
+        android:layout_width="74dp"
+        android:layout_height="74dp" />
+
+    <com.gossip.android.view.gossip.game.ScanAnimView
+        android:id="@+id/sv_two"
+        android:layout_width="74dp"
+        android:layout_height="74dp" />
+
+    <com.gossip.android.view.gossip.game.ScanAnimView
+        android:id="@+id/sv_three"
+        android:layout_width="74dp"
+        android:layout_height="74dp" />
+    <Button
+        android:id="@+id/btn_go"
+        android:background="@mipmap/room_game_scan_btn_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_scan"
+        android:background="@mipmap/room_game_scan_btn_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

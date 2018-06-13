@@ -45,7 +45,7 @@ public class ScanView extends FrameLayout {
     }
 
     protected int getLayoutRes() {
-        return R.layout.widget_scan_view_small;
+        return R.layout.room_game_widget_scan_view_small;
     }
 
     public void setNum(int num, int type) {
@@ -57,11 +57,22 @@ public class ScanView extends FrameLayout {
         int res;
         if (num >= 0 && num < numRes.length) {
             res = numRes[num];
+            onOpenNum();
         } else {
             res = R.mipmap.room_game_scan_unknow;
+            onCloseNum();
         }
         numView.setImageResource(res);
     }
+
+    protected void  onOpenNum(){
+
+    }
+
+    protected void onCloseNum(){
+
+    }
+
 
     public void setBg(int type) {
         int res;
