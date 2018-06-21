@@ -5,7 +5,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.wuming.myapplication.MainActivity">
+    tools:context="com.example.wuming.myapplication.activitylife.MainActivity">
 
 
     <android.support.v7.widget.Toolbar
@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:text="hello world"
+    <Button
+       android:onClick="onSecondActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
