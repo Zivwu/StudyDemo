@@ -18,10 +18,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".widget.wave.WaveActivity" />
-        <activity android:name=".widget.heat.HeartActivity"></activity>
+        <activity android:name=".widget.heat.HeartActivity" />
         <activity android:name=".widget.paint.shader.ShaderActivity" />
         <activity android:name=".path.PathActivity" />
         <activity android:name=".gossip.pk.PkActivity" />
+        <activity android:name=".rx.RxActivity"></activity>
     </application>
 
 </manifest>
