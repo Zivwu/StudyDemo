@@ -1,18 +1,20 @@
 package com.gossip.android.view.rx;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.Formatter;
 import android.view.View;
-import android.widget.Toast;
 
 import com.gossip.android.view.R;
 import com.gossip.android.view.utils.Logger;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
-import io.reactivex.Scheduler;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -36,12 +38,22 @@ public class RxActivity extends AppCompatActivity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxActivity.this.onClick(v);
+                File file = RxActivity.this.getCacheDir();
+                showUsableSpace(file);
+                file = Environment.getExternalStorageDirectory();
+                showUsableSpace(file);
             }
         });
     }
 
+    private void showUsableSpace(File file) {
+        long usableSpace = file.getUsableSpace();
+        String acceseSpace = Formatter.formatFileSize(getApplicationContext(), usableSpace);
+        Logger.printD(TAG,file.getAbsolutePath()+":"+acceseSpace);
+    }
+
     private void onClick(View view){
+
         Observable.just(view)
                 .subscribeOn(Schedulers.computation())
                 .map(new Function<View, String>() {
@@ -58,6 +70,7 @@ public class RxActivity extends AppCompatActivity {
                         return getTwo();
                     }
                 })
+                .compose(RxHelper.<String>enableViews())
                 .map(new Function<String, String>() {
                     @Override
                     public String apply(String s) throws Exception {
@@ -65,6 +78,7 @@ public class RxActivity extends AppCompatActivity {
                         return "3";
                     }
                 })
+                .compose(RxHelper.<String>io_main())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
@@ -80,10 +94,25 @@ public class RxActivity extends AppCompatActivity {
                         dis();
                     }
                 })
-                .subscribe(new Consumer<String>() {
+                .subscribe(new Observer<String>() {
                     @Override
-                    public void accept(String s) throws Exception {
-                        Logger.printD(TAG,"subscribe"+s);
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }

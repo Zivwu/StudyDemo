@@ -1,9 +1,16 @@
 package com.gossip.android.view.rx;
 
+import android.view.View;
+
+import com.gossip.android.view.utils.Logger;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class RxHelper {
@@ -23,6 +30,28 @@ public class RxHelper {
         };
     }
 
+
+
+    public static <T> ObservableTransformer<T, T> enableViews() {
+        return new ObservableTransformer<T, T>() {
+            @Override
+            public ObservableSource<T> apply(Observable<T> upstream) {
+                return upstream
+                        .doOnSubscribe(new Consumer<Disposable>() {
+                            @Override
+                            public void accept(Disposable disposable) throws Exception {
+                                Logger.printD("RxActivity","Transformer doOnSubscribe");
+                            }
+                        })
+                        .doOnTerminate(new Action() {
+                            @Override
+                            public void run() throws Exception {
+                                Logger.printD("RxActivity","Transformer doOnTerminate");
+                            }
+                        });
+            }
+        };
+    }
 
 
 

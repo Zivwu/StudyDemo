@@ -4,6 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/iv_image"
+        android:src="@mipmap/room_game_tarot_love"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent" />
+
+
+    <com.gossip.android.view.gossip.pk.TarotView
+        android:id="@+id/tarot"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
+
+
 
     <ImageButton
         android:id="@+id/fabtn_pk"
@@ -18,12 +32,17 @@
 
     <NumberPicker
         android:id="@+id/numpicker"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 
     <com.gossip.android.view.gossip.game.ScanAnimView
         android:id="@+id/scanView"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
+
 </RelativeLayout>

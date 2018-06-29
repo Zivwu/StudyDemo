@@ -1,19 +1,20 @@
 package com.gossip.android.view.gossip.pk;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.gossip.android.view.R;
 import com.gossip.android.view.gossip.game.ScanAnimView;
-import com.gossip.android.view.gossip.game.ScanDialog;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,10 +22,8 @@ import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -35,26 +34,13 @@ public class PkActivity extends AppCompatActivity {
     @BindView(R.id.scanView)
     ScanAnimView scanView;
 
+    @BindView(R.id.iv_image)
+    ImageView imgView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.room_pk_activity);
         ButterKnife.bind(this);
-//        scanView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Random random = new Random();
-////                scanView.setNum(9,false);
-//                List<Integer> list =new ArrayList<>();
-//                list.add(2);
-//                list.add(3);
-//                list.add(-1);
-//
-//                ScanDialog dialog =new ScanDialog(PkActivity.this,list);
-//                dialog.show();
-//            }
-//        });\
-
         testRxjava();
 
     }
@@ -101,23 +87,49 @@ public class PkActivity extends AppCompatActivity {
 
     @OnClick(R.id.fabtn_pk)
     public void onViewClicked() {
-        testRxjava();
-//        Random random = new Random();
-//        int i = random.nextInt(3);
-//        Dialog dialog;
-//        switch (i) {
-//            case 1:
-//                dialog = new PkResultDialog(this);
-//                dialog.show();
-//                break;
-//            case 0:
-//                dialog = new PkScoreDialog(this);
-//                dialog.show();
-//                break;
-//            case 2:
-//                dialog = new PkVoteDialog(this);
-//                dialog.show();
-//                break;
-//        }
+        startTarot2();
+
+    }
+
+    private void startTarot2() {
+        TarotView viewById = findViewById(R.id.tarot);
+        viewById.startAnim();
+
+    }
+
+
+    private void startTarot(){
+        ObjectAnimator animator = ObjectAnimator.ofFloat(imgView, "rotationY", 0, 90)
+                .setDuration(2000);
+        animator.setInterpolator(new LinearInterpolator());
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                imgView.setImageResource(R.mipmap.room_game_tarot_21);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(imgView, "rotationY", 90, 180)
+                .setDuration(2000);
+        animator.setInterpolator(new LinearInterpolator());
+
+        AnimatorSet set =new AnimatorSet();
+        set.playSequentially(animator,animator2);
+        set.start();
     }
 }
