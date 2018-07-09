@@ -22,7 +22,7 @@
         <activity android:name=".widget.paint.shader.ShaderActivity" />
         <activity android:name=".path.PathActivity" />
         <activity android:name=".gossip.pk.PkActivity" />
-        <activity android:name=".rx.RxActivity"></activity>
+        <activity android:name=".rx.RxActivity" />
     </application>
 
 </manifest>
