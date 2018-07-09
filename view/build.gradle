@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 27
@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.gossip.android.view"
+//        applicationId "com.gossip.android.view"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
