@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private Realm realm;
     private RecyclerView recyclerView;
     private RealmResults<Student> allAsync;
-    private RealmResults<Student> totle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,24 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRealm() {
         realm = Realm.getDefaultInstance();
-        totle = realm.where(Student.class)
-                .sort("time", Sort.ASCENDING)
-                .findAllAsync();
+
         allAsync = realm.where(Student.class)
                 .sort("time", Sort.DESCENDING)
                 .limit(20)
                 .findAllAsync()
                 .sort("time", Sort.ASCENDING);
 
-        totle.addChangeListener(new RealmChangeListener<RealmResults<Student>>() {
-            @Override
-            public void onChange(RealmResults<Student> students) {
-//                int i=10;
-//                while (i<students.size()){
-//                    students.deleteFirstFromRealm();
-//                }
-            }
-        });
 
         allAsync.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<Student>>() {
             @Override
@@ -112,11 +100,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void delete(View view) {
 
-        realm.executeTransaction(new Realm.Transaction() {
+        realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                if (allAsync.isLoaded()) {
-                    allAsync.deleteFromRealm(0);
+                RealmResults<Student> time = realm.where(Student.class)
+                        .sort("time", Sort.ASCENDING)
+                        .findAll();
+
+                int i=10;
+                while (i<time.size()){
+                    time.deleteFirstFromRealm();
                 }
             }
         });
