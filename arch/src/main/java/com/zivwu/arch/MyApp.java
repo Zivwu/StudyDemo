@@ -6,6 +6,9 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 public class MyApp extends Application {
+
+    public static RealmConfiguration otherConfig;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -13,12 +16,18 @@ public class MyApp extends Application {
     }
 
 
-
     private void initRealm() {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
-                .name("arch.realm").build();
+                .name("arch.realm")
+//                .schemaVersion()
+                .deleteRealmIfMigrationNeeded()
+//                .migration(new MyMigration())
+//                .inMemory()
+                .build();
         Realm.setDefaultConfiguration(config);
+
     }
+
 
 }

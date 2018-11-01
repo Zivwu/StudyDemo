@@ -9,6 +9,15 @@ public class Student extends RealmObject {
     private String id;
     private String name;
     private int time;
+    private Person person;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public int getTime() {
         return time;

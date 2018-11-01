@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import io.realm.OrderedCollectionChangeSet;
+import io.realm.OrderedRealmCollectionChangeListener;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Realm realm;
     private RecyclerView recyclerView;
     private RealmResults<Student> allAsync;
+    private RealmResults<Student> totle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +35,57 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRealm() {
         realm = Realm.getDefaultInstance();
+        totle = realm.where(Student.class)
+                .sort("time", Sort.ASCENDING)
+                .findAllAsync();
         allAsync = realm.where(Student.class)
-
+                .sort("time", Sort.DESCENDING)
+                .limit(20)
                 .findAllAsync()
-                .sort("time",Sort.ASCENDING);
-        allAsync.addChangeListener(new RealmChangeListener<RealmResults<Student>>() {
+                .sort("time", Sort.ASCENDING);
+
+        totle.addChangeListener(new RealmChangeListener<RealmResults<Student>>() {
             @Override
             public void onChange(RealmResults<Student> students) {
-                adapter.setNewData(students);
-//                recyclerView.scrollToPosition(adapter.getData().size()-1);
+//                int i=10;
+//                while (i<students.size()){
+//                    students.deleteFirstFromRealm();
+//                }
             }
         });
-        if (allAsync.isLoaded()){
-            adapter.setNewData(allAsync);
-        }
+
+        allAsync.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<Student>>() {
+            @Override
+            public void onChange(RealmResults<Student> students,
+                                 OrderedCollectionChangeSet changeSet) {
+                if (changeSet==null) {
+                    adapter.notifyDataSetChanged();
+                    return;
+                }
+//                // For deletions, the adapter has to be notified in reverse order.
+                boolean bottom = isBottom(recyclerView);
+                OrderedCollectionChangeSet.Range[] deletions = changeSet.getDeletionRanges();
+                for (int i = deletions.length - 1; i >= 0; i--) {
+                    OrderedCollectionChangeSet.Range range = deletions[i];
+                    adapter.notifyItemRangeRemoved(range.startIndex, range.length);
+                }
+
+                OrderedCollectionChangeSet.Range[] insertions = changeSet.getInsertionRanges();
+                for (OrderedCollectionChangeSet.Range range : insertions) {
+                    adapter.notifyItemRangeInserted(range.startIndex, range.length);
+                }
+
+                OrderedCollectionChangeSet.Range[] modifications = changeSet.getChangeRanges();
+                for (OrderedCollectionChangeSet.Range range : modifications) {
+                    adapter.notifyItemRangeChanged(range.startIndex, range.length);
+                }
+
+                if (bottom)
+                    recyclerView.scrollToPosition(adapter.getData().size()-1);
+            }
+        });
+        adapter.setNewData(allAsync);
+
     }
 
     private void initRvList() {
@@ -71,10 +111,11 @@ public class MainActivity extends AppCompatActivity {
     private int i = 0;
 
     public void delete(View view) {
+
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                if (allAsync.isLoaded()){
+                if (allAsync.isLoaded()) {
                     allAsync.deleteFromRealm(0);
                 }
             }
@@ -84,14 +125,25 @@ public class MainActivity extends AppCompatActivity {
     public void change(View view) {
 
 
+    }
 
+
+    public boolean isBottom(RecyclerView recyclerView) {
+        if (recyclerView == null) return false;
+        if (recyclerView.computeVerticalScrollExtent() + recyclerView.computeVerticalScrollOffset()
+                >= recyclerView.computeVerticalScrollRange())
+            return true;
+        return false;
     }
 
     public void add(View view) {
-       final Student object = new Student();
+        final Student object = new Student();
         object.setId(String.valueOf(i));
         object.setName("李斯" + i);
         object.setTime(i);
+        Person person = new Person();
+        person.setAddress("地址在家里" + i);
+        object.setPerson(person);
         i++;
         realm.executeTransaction(new Realm.Transaction() {
             @Override

@@ -14,7 +14,7 @@ public class StudentAdapter extends BaseQuickAdapter<Student, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, Student item) {
-        helper.setText(R.id.tv_id, item.getId());
+        helper.setText(R.id.tv_id, item.getPerson().getAddress());
         helper.setText(R.id.tv_name, item.getName());
     }
 }
