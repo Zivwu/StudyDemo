@@ -14,12 +14,14 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:visibility="gone"
        android:onClick="onSecondActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 
     <Button
+        android:visibility="gone"
         android:onClick="add"
         android:text="add"
         android:layout_width="wrap_content"
@@ -28,12 +30,19 @@
     <Button
         android:onClick="delete"
         android:text="delete"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:id="@+id/fl_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
 </LinearLayout>

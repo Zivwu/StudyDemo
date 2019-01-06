@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,7 +14,8 @@ import com.example.wuming.myapplication.R;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity
+        implements OneFragment.OnFragmentInteractionListener, BlankFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,10 @@ public class MainActivity extends BaseActivity {
                 return false;
             }
         });
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fl_fragment, new OneFragment())
+                .commit();
     }
 
     public void onSecondActivity(View view) {
@@ -60,8 +66,18 @@ public class MainActivity extends BaseActivity {
     }
 
     public void add(View view) {
-        i++;
-        Toast.makeText(this, String.valueOf(i), Toast.LENGTH_SHORT).show();
-        ShortcutBadger.applyCount(this, i);
+//        i++;
+//        Toast.makeText(this, String.valueOf(i), Toast.LENGTH_SHORT).show();
+//        ShortcutBadger.applyCount(this, i);
+
+
+
+    }
+
+
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

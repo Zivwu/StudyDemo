@@ -4,14 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    tools:context=".activitylife.SecondActivity">
+    tools:context=".Main2Activity">
+    <FrameLayout
+        android:id="@+id/fl_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
 
-
-    <ImageView
-        android:id="@+id/iv"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/room"
-        android:transitionName="head" />
 </android.support.constraint.ConstraintLayout>
